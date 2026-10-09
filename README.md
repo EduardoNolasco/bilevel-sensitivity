@@ -34,17 +34,12 @@ The following describes what this code does, where it differs from the descripti
 
 - **Gradient of the inner problem.** The augmented Lagrangian subproblem is minimised with SciPy's L-BFGS-B using finite-difference gradients; each function evaluation re-solves the lower-level problem with IPOPT. The adjoint formulation (3.9)-(3.10) is not implemented in this version.
 - **Sensitivities.** `_compute_sensitivity` is a forward-mode implementation of the system (3.4) (one right-hand side per upper-level variable). It is used only for the stationarity part of the KKT residual in the stopping test. It adds a diagonal shift of 1e-5 to the matrix, defines the active set by g_i > -1e-6, and does not include bounds on y.
-- **Stopping.** The KKT tolerance is 1e-5. The stall test requires ten consecutive outer iterations with ||x_k - x_{k-1}||_2 < 1e-7 and |F_k - F_{k-1}| < 1e-7. The L-BFGS-B tolerance is `gtol` = 1e-5. Most reported iteration counts (11 or 12) reflect this ten-iteration window.
-- **Penalty update.** rho is multiplied by 2 when the feasibility violation exceeds 0.5 times the previous one, capped at 1e6 (rho_0 = 10, mu_0 = 0).
-- **Regularisation.** The quadratic term 1e-6 * ||y||^2 is added to the lower-level objective for the problems flagged `is_ll_linear`: `Bard_1991_ex1`, `Bard_Book_1998`, `DempeEtal2012`, `DempeFranke2011Ex41`, `Dempe_Franke_2011_ex42`, `Dempe_Lohse_2011_ex31a`, `Dempe_Lohse_2011_ex31b`.
-- **Problems not in Table 1.** `Dempe1992a` and `DempeFranke2011Ex41` did not reach the literature value from any starting point and are not reported.
-- **Line search.** SciPy's built-in L-BFGS-B line search is used; its constants cannot be set through the interface used here.
 
 ## Reproducing the reported results
 
 Tested with Python 3.11.13, CasADi 3.6.3, NumPy 1.26.0, SciPy 1.11.3, Matplotlib 3.8.1 and pandas 2.2.3 on Windows.
 
-The outcome of these non-convex multi-start problems can depend on the platform and on library builds. A full re-run on a different Windows machine with the versions above (`reference_results/rerun_2026-10-09.csv`) reproduced 9 of the 13 runs reported in Table 1 exactly (same F and number of iterations), 3 with the same solution but small differences in the final digits or in the iteration count (`Bard_1991_ex1`, `Dempe_Lohse_2011_ex31b`, `Shimizu_Aiyoshi_1981_ex2`), and 1 with a different final point (`AiyoshiShimizu1984Ex2` from x0 = (20, 20): F = 1.9e-4 instead of 5).
+The outcome of these non-convex multi-start problems can depend on the platform and on library builds. A full re-run on a different Windows machine with the versions above (`reference_results/rerun_2026-10-09.csv`) reproduced the final solution in 12 of the 13 runs reported in Table 1. The exception is `AiyoshiShimizu1984Ex2` from x0 = (20, 20), which ended at a different point (F = 1.9e-4 instead of 5).
 
 For `Outrata_Cervinka_2009` the starting points in this repository are (-10, 1), (-10, -1) and (10, 1); the run reported in the paper is the one from (-10, 1).
 
