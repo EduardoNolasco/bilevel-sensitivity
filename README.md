@@ -6,8 +6,11 @@ It implements an augmented Lagrangian method that uses lower-level KKT sensitivi
 
 ## Usage 
 pip install -r requirements.txt
+
 python BLP_main.py # runs all problems and starting points
+
 python results_aggregator.py # writes summary_results.csv
+
 
 Start from an empty `results/` folder. Tested with Python 3.11, CasADi 3.6.3, NumPy 1.26.0, SciPy 1.11.3, Matplotlib 3.8.1 and pandas 2.2.3 on Windows.
 
