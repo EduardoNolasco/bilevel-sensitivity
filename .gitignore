@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+results/
+summary_results.csv
+.ipynb_checkpoints/
