@@ -1,6 +1,6 @@
 """
 Sensitivity-based augmented Lagrangian (ALM) solver for bilevel programmes.
-Legacy version (commit dafb3a3, 27 August 2025), as used to generate the numerical results of the paper.
+Version 1.0, as used to generate the numerical results of the paper.
 
 Differences from the algorithm as described in the paper (see README, "Notes on correspondence with the paper"):
   * The inner ALM subproblem is minimised by SciPy's L-BFGS-B with gradients obtained by finite differences;

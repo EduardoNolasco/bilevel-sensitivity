@@ -2,4 +2,4 @@ casadi==3.6.3
 numpy==1.26.0
 scipy==1.11.3
 matplotlib==3.8.1
-pandas>=2.0,<2.3
+pandas==2.2.3
