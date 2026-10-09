@@ -1,5 +1,3 @@
-<!-- DRAFT: review every statement, especially the section "Notes on correspondence with the paper", before publishing. -->
-
 # Sensitivity-based bilevel optimisation (BLP): legacy code
 
 Code archived as used for the numerical results of
@@ -42,10 +40,14 @@ The following describes what this code does, where it differs from the descripti
 - **Problems not in Table 1.** `Dempe1992a` and `DempeFranke2011Ex41` did not reach the literature value from any starting point and are not reported.
 - **Line search.** SciPy's built-in L-BFGS-B line search is used; its constants cannot be set through the interface used here.
 
-## Reference results
+## Reproducing the reported results
 
-[Add `summary_results.csv` / the labelled Excel file here, with the date of the run.]
+Tested with Python 3.11.13, CasADi 3.6.3, NumPy 1.26.0, SciPy 1.11.3, Matplotlib 3.8.1 and pandas 2.2.3 on Windows.
+
+The outcome of these non-convex multi-start problems can depend on the platform and on library builds. A full re-run on a different Windows machine with the versions above (`reference_results/rerun_2026-10-09.csv`) reproduced 9 of the 13 runs reported in Table 1 exactly (same F and number of iterations), 3 with the same solution but small differences in the final digits or in the iteration count (`Bard_1991_ex1`, `Dempe_Lohse_2011_ex31b`, `Shimizu_Aiyoshi_1981_ex2`), and 1 with a different final point (`AiyoshiShimizu1984Ex2` from x0 = (20, 20): F = 1.9e-4 instead of 5).
+
+For `Outrata_Cervinka_2009` the starting points in this repository are (-10, 1), (-10, -1) and (10, 1); the run reported in the paper is the one from (-10, 1).
 
 ## Licence
 
-[Choose a licence, e.g. MIT, and add a `LICENSE` file.]
+MIT, see `LICENSE`.

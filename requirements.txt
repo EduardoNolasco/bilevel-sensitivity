@@ -1,7 +1,5 @@
-# Minimum versions. Before release, replace these with the exact versions you used
-# (see `pip freeze` or `conda list` in your environment).
-casadi>=3.6
-numpy
-scipy
-pandas
-matplotlib>=3.6
+casadi==3.6.3
+numpy==1.26.0
+scipy==1.11.3
+matplotlib==3.8.1
+pandas>=2.0,<2.3
