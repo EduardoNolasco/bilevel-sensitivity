@@ -26,6 +26,14 @@ A full run (`reference_results/rerun_2026-10-09.csv`, 44 runs) reaches the objec
 
 Table 1 gives one starting point for each of 13 problems. `Dempe1992a` and `DempeFranke2011Ex41` are not in Table 1, because they did not reach the literature value from any starting point.
 
+## SQL analysis (optional)
+
+`results_to_sqlite.py` loads the reference results and the values of Table 1 into a SQLite database (`results.db`, Python standard library only) and can run a SQL file against it. `queries.sql` contains queries on the runs: aggregates per problem, joins with the known solutions.
+
+~~~
+python results_to_sqlite.py queries.sql
+~~~
+
 ## Licence
 
 MIT, see `LICENSE`.
